@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Photothèque version BDD{% endblock %}
+
+{% block body %}
+    <h1>Photothèque version BDD</h1>
+    <ul>
+        {% for categorie in categories %}
+            <li>{{ categorie.titre }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Ajouter une catégorie</h2>
+    {{ form(formulaire) }}
+{% endblock %}
