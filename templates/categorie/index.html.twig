@@ -4,11 +4,25 @@
 
 {% block body %}
     <h1>Photothèque version BDD</h1>
-    <ul>
+    <table class="table table-striped">
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
         {% for categorie in categories %}
-            <li>{{ categorie.titre }}</li>
+            <tr>
+                <td>{{ categorie.titre }}</td>
+                <td>{{ categorie.description }}</td>
+                <td>
+                    <a class="btn btn-warning"
+                       href="{{ path("app_modifier_categorie", {"id": categorie.id}) }}">Modifier</a>
+                    <a class="btn btn-danger"
+                       href="{{ path("app_supprimer_categorie", {"id": categorie.id}) }}">Supprimer</a>
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
     <h2>Ajouter une catégorie</h2>
-    {{ form(formulaire) }}
+    <a class="btn btn-primary" href="{{ path("app_ajouter_categorie") }}">Ajouter une catégorie</a>
 {% endblock %}
