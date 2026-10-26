@@ -17,6 +17,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ chaton.nom }}</h5>
                         <h6>{{ chaton.dateDeNaissance|date }}</h6>
+                        <p class="card-text">{{ chaton.description }}</p>
                         <a href="{{ path("app_modifier_chaton", {"id": chaton.id}) }}" class="btn btn-sm btn-primary">Modifier</a>
                         <a href="{{ path("app_supprimer_chaton", {"id": chaton.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
                     </div>

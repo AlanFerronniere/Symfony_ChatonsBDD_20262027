@@ -17,6 +17,7 @@ class ChatonType extends AbstractType
     {
         $builder
             ->add('nom')
+            ->add('description')
             ->add('dateDeNaissance')
             //ici je vais forcer le type de champ dans le formulaire
             ->add('urlPhoto', FileType::class, [
