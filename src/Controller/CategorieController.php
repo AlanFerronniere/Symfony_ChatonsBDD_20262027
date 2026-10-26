@@ -8,6 +8,7 @@ use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -87,6 +88,20 @@ final class CategorieController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            //on supprime les chatons de la catégorie avant de supprimer la catégorie
+            $chatons = $categorie->getChatons();
+            foreach ($chatons as $chaton) {
+                //on supprime la photo du chaton si elle existe
+                $photo = $chaton->getPhoto();
+                if ($photo) {
+                    $fs = new Filesystem();
+                    if ($fs->exists($photo)) {
+                        $fs->remove($photo);
+                    }
+                }
+                $em->remove($chaton);
+            }
+
             $em->remove($categorie); //je veux faire un delete
             $em->flush(); //je déclenche le delete
 

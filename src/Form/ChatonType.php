@@ -21,6 +21,7 @@ class ChatonType extends AbstractType
             //ici je vais forcer le type de champ dans le formulaire
             ->add('urlPhoto', FileType::class, [
                 'mapped' => false, //je vais le gérer à la main
+                'required' => false, //je ne suis pas obligé de le remplir
             ])
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,

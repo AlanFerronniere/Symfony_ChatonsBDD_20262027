@@ -15,6 +15,8 @@
                 <td>{{ categorie.titre }}</td>
                 <td>{{ categorie.description }}</td>
                 <td>
+                    <a class="btn btn-success"
+                       href="{{ path("app_chatons", {"id_categorie": categorie.id}) }}">Voir 🐈</a>
                     <a class="btn btn-warning"
                        href="{{ path("app_modifier_categorie", {"id": categorie.id}) }}">Modifier</a>
                     <a class="btn btn-danger"

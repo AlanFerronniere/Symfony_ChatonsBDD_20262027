@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supprimer {{ chaton.nom }}{% endblock %}
+
+{% block body %}
+<h1>Modifier un chaton</h1>
+    <h2>Êtes-vous sûr de vouloir supprimer {{ chaton.nom }} ?</h2>
+    {{ form(formulaire) }}
+    <a href="{{ path("app_chatons", {"id_categorie": chaton.Categorie.id}) }}" class="btn btn-secondary mt-3">&lt; Retour à la liste des chatons</a>
+{% endblock %}

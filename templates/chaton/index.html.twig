@@ -1,20 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ChatonController!{% endblock %}
+{% block title %}Les photos de {{ categorie.titre }}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Les photos de {{ categorie.titre }}</h1>
+    <p>{{ categorie.description }}</p>
+    <div class="row">
+        {% if chatons.count==0 %}
+            <p>Aucune photo dans cette catégorie</p>
+        {% endif %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/henry/Code/ChatonsBDD/src/Controller/ChatonController.php</code></li>
-        <li>Your template at <code>/home/henry/Code/ChatonsBDD/templates/chaton/index.html.twig</code></li>
-    </ul>
-</div>
+        {% for chaton in chatons %}
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ asset(chaton.urlPhoto) }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ chaton.nom }}</h5>
+                        <h6>{{ chaton.dateDeNaissance|date }}</h6>
+                        <a href="{{ path("app_modifier_chaton", {"id": chaton.id}) }}" class="btn btn-sm btn-primary">Modifier</a>
+                        <a href="{{ path("app_supprimer_chaton", {"id": chaton.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a class="btn btn-primary mt-3" href="{{ path("app_ajouter_chaton") }}">Ajouter un chaton</a>
 {% endblock %}
