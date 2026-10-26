@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proprietaire index{% endblock %}
+
+{% block body %}
+    <h1>Proprietaires</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proprietaire in proprietaires %}
+            <tr>
+                <td>{{ proprietaire.nom }}</td>
+                <td>{{ proprietaire.prenom }}</td>
+                <td>
+                    <a class="btn btn-warning" href="{{ path('app_proprietaire_edit', {'id': proprietaire.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun propriétaire</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_proprietaire_new') }}">Ajouter un propriétaire</a>
+{% endblock %}

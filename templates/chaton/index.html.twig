@@ -16,8 +16,14 @@
                     <img class="card-img-top" src="{{ asset(chaton.urlPhoto) }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ chaton.nom }}</h5>
-                        <h6>{{ chaton.dateDeNaissance|date }}</h6>
+                        <h6>{{ chaton.dateDeNaissance|date("d/m/Y") }}</h6>
                         <p class="card-text">{{ chaton.description }}</p>
+                        <p class="card-text">(
+                        {% for proprietaire in chaton.proprietaires %}
+                            {{ proprietaire.nom }} {{ proprietaire.prenom }}
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                        )</p>
                         <a href="{{ path("app_modifier_chaton", {"id": chaton.id}) }}" class="btn btn-sm btn-primary">Modifier</a>
                         <a href="{{ path("app_supprimer_chaton", {"id": chaton.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
                     </div>

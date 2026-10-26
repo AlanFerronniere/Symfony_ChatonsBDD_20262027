@@ -1,0 +1,7 @@
+<hr>
+<h2>Supprimer le propriétaire</h2>
+<p class="alert alert-danger">Attention cette action ne peut pas être annulée</p>
+<form method="post" action="{{ path('app_proprietaire_delete', {'id': proprietaire.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ proprietaire.id) }}">
+    <button class="btn btn-danger">Supprimer</button>
+</form>

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un proprietaire{% endblock %}
+
+{% block body %}
+    <h1>Modifier un propriétaire</h1>
+
+    {{ include('proprietaire/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+    <a class="btn btn-secondary mt-3" href="{{ path('app_proprietaire_index') }}">Retour à la liste</a>
+
+    {{ include('proprietaire/_delete_form.html.twig') }}
+{% endblock %}
